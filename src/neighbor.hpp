@@ -99,6 +99,7 @@ private:
 inline double compute_forces(System& s, const NeighborList& nl) {
     const double rc2 = lj::kCutoff * lj::kCutoff;
     std::fill(s.force.begin(), s.force.end(), 0.0);
+    s.virial = 0.0;
     double pe = 0.0;
     for (const auto& p : nl.pairs()) pe += add_pair_force(s, p.first, p.second, rc2);
     return pe;

@@ -13,6 +13,8 @@ struct System {
     std::vector<double> pos;
     std::vector<double> vel;
     std::vector<double> force;
+    // Pair virial sum(r_ij . f_ij) from the last force evaluation.
+    double virial = 0.0;
 };
 
 // Wraps a coordinate difference into [-box/2, box/2].

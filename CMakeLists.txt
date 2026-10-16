@@ -21,3 +21,10 @@ add_test(NAME test_md COMMAND test_md)
 add_executable(test_neighbor tests/test_neighbor.cpp)
 target_include_directories(test_neighbor PRIVATE src)
 add_test(NAME test_neighbor COMMAND test_neighbor)
+
+add_executable(test_thermo tests/test_thermo.cpp)
+target_include_directories(test_thermo PRIVATE src)
+add_test(NAME test_thermo COMMAND test_thermo)
+
+add_executable(md_serial src/main_serial.cpp)
+target_include_directories(md_serial PRIVATE src)
