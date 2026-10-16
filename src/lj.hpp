@@ -11,11 +11,16 @@ inline double pair_energy(double r2, double rc2) {
     return 4.0 * inv6 * (inv6 - 1.0);
 }
 
+// U(rc), the value the shifted potential subtracts from every pair inside the cutoff.
+inline double energy_at_cutoff(double rc2) {
+    const double inv6c = 1.0 / (rc2 * rc2 * rc2);
+    return 4.0 * inv6c * (inv6c - 1.0);
+}
+
 // Energy shifted by U(rc) so it is continuous at the cutoff (needed for NVE conservation).
 inline double shifted_pair_energy(double r2, double rc2) {
     if (r2 >= rc2) return 0.0;
-    const double inv6c = 1.0 / (rc2 * rc2 * rc2);
-    return pair_energy(r2, rc2) - 4.0 * inv6c * (inv6c - 1.0);
+    return pair_energy(r2, rc2) - energy_at_cutoff(rc2);
 }
 
 // F(r)/r, so the force vector is this value times the displacement.

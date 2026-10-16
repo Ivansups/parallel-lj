@@ -4,6 +4,8 @@
 #include <cstddef>
 #include <vector>
 
+#include "lj.hpp"
+
 namespace md {
 
 // Flat arrays of length 3*n: x0,y0,z0,x1,y1,z1,...
@@ -13,8 +15,11 @@ struct System {
     std::vector<double> pos;
     std::vector<double> vel;
     std::vector<double> force;
+    double cutoff = lj::kCutoff;
     // Pair virial sum(r_ij . f_ij) from the last force evaluation.
     double virial = 0.0;
+    // Number of pairs inside the cutoff in the last force evaluation.
+    std::size_t pair_count = 0;
 };
 
 // Wraps a coordinate difference into [-box/2, box/2].

@@ -28,3 +28,7 @@ add_test(NAME test_thermo COMMAND test_thermo)
 
 add_executable(md_serial src/main_serial.cpp)
 target_include_directories(md_serial PRIVATE src)
+
+add_executable(test_validation tests/test_validation.cpp)
+target_include_directories(test_validation PRIVATE src)
+add_test(NAME test_validation COMMAND test_validation)
